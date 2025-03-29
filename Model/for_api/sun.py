@@ -32,5 +32,3 @@ def energy_from_sunshine(solar_panel_power, panel_efficiency):
         energy_produced += power_output / 2  # Średnia moc w ciągu każdej 30-minutowej próbki
     
     return energy_produced
-
-print(energy_from_sunshine(5, 0.8))
