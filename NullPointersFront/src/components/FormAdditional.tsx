@@ -7,7 +7,6 @@ interface FormInput {
   carAmount?: string;
   usageAmount?: string;
   sourcePower: string
-
 }
 
 export default function FormAdditional() {
@@ -36,30 +35,46 @@ export default function FormAdditional() {
     }
   }
   return (
-    <>
-      <h2>Opcje niestandardowe</h2>
+    <div className="battery-container border-4 border-gray-300 rounded-lg pt-2 pb-8 px-4 bg-gray-700 relative">
+      {/* Górna część baterii (kapsel) */}
+      <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 w-10 h-4 bg-gray-500 border-2 border-gray-300 rounded-t-md"></div>
+
+      <h2 className="font-bold text-lg mb-6 text-center text-green-400">Bateria</h2>
+
+      {/* Wskaźniki naładowania baterii */}
+      <div className="flex justify-between mb-4 px-2">
+        <div className="w-full h-3 bg-green-400 rounded-full mb-1"></div>
+      </div>
+      <div className="flex justify-between mb-4 px-2">
+        <div className="w-3/4 h-3 bg-green-400 rounded-full mb-1"></div>
+      </div>
+      <div className="flex justify-between mb-4 px-2">
+        <div className="w-1/2 h-3 bg-green-400 rounded-full mb-1"></div>
+      </div>
+
       <form className="max-w-sm mx-auto" onSubmit={handleSubmit}>
-        <InputComponent input={input} handleInput={handleInput} disabled={false} name={"sourcePower"} title={"Moc baterii"} />
+        <InputComponent input={input} handleInput={handleInput} disabled={false} name={"sourcePower"}
+                      title={"Moc baterii"}/>
 
-        <div className={"my-5"}>
+        <div className="my-5 flex items-center">
           <input type="checkbox" id="additional" name="additional" checked={additional}
-                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                 onChange={() => setAdditional(prevState => !prevState)}
+                className="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500"
+                onChange={() => setAdditional(prevState => !prevState)}
           />
-          <label htmlFor="additional" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 ">Dodatkowe
-            opcje</label>
+          <label htmlFor="additional" className="ml-2 text-sm font-medium">Dodatkowe opcje</label>
         </div>
-        <InputComponent input={input} handleInput={handleInput} disabled={!additional} title={"Ilosc samochodow"} name={"carAmount"} />
 
-        <InputComponent input={input} handleInput={handleInput} disabled={!additional} title={"Zużycie baterii"} name={"usageAmount"} />
+        <InputComponent input={input} handleInput={handleInput} disabled={!additional} title={"Ilość samochodów"}
+                      name={"carAmount"}/>
 
+        <InputComponent input={input} handleInput={handleInput} disabled={!additional} title={"Zużycie baterii"}
+                      name={"usageAmount"}/>
 
         <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full mt-4"
           type="submit">Oblicz
         </button>
       </form>
-
-    </>
+    </div>
   )
 }
