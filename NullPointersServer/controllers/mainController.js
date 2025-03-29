@@ -47,7 +47,7 @@ const downloadData = (req, res) => {
     const { spawn } = require('child_process');
 
 
-    const args = Object.entries(data).flatMap(([key, value]) => [value]);
+    const args = Object.entries(data).flatMap(([key, value]) => [key, value]);
 
 
     const pythonProcess = spawn('python3', ['-m', 'script', ...args]);
