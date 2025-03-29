@@ -1,2 +1,4 @@
 Model - na podstawie danych danych o zapotrzebowaniu i produkcji
 kiedy różnica pomiędzy produkcją a zapotrzebowaniem jest największa
+
+out: rozkład na jutro
