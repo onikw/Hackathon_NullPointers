@@ -8,9 +8,11 @@ sys.path.append(os.path.abspath(".."))  # Dodaje folder nadrzędny do ścieżki
 from Model.for_api.api import api
 
 args = sys.argv[1:]
+args = args[0]
+print(args)
+print(type(args))
+AVERAGE_CAR_BATTERY_CAPACITY = int(args["usageAmount"])  # w kWh
 
-
-AVERAGE_CAR_BATTERY_CAPACITY = args["usageAmount"]  # w kWh
 
 more_cars = int(args["carAmount"]) ## OPTIONAL
 battery_capacity = int(args["batteryCapacity"])  # w kWh
@@ -31,3 +33,7 @@ if args:
     create_analysis_chart(required_energy, charger_power, solar_power)
 else:
     print("Brak argumentów, zwracam domyślną wiadomość.")
+
+# Odpowiedź z Pythona: Figure(1400x800)
+# {"batteryCapacity":"312312","batteryPercentage":"12312","carAmount":"123","monthlyUsage":"333","sourcePower":"1123","solarPower":"31","usageAmount":"33"}
+# <class 'str'>
