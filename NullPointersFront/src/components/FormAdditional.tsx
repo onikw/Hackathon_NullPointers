@@ -23,9 +23,16 @@ export default function FormAdditional() {
     })
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    axios.post("http://localhost:8080/api/calculate", input)
+    try {
+      const response = await axios.post("http://localhost:5555/sendData", input)
+      if (response.status === 200) {
+        alert('Dane zostały zapisane pomyślnie')
+      }
+    } catch (error) {
+      alert('Błąd podczas zapisywania danych')
+    }
   }
   return (
     <>
@@ -63,7 +70,8 @@ export default function FormAdditional() {
         </div>
 
         <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Oblicz
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          type="submit">Oblicz
         </button>
       </form>
 

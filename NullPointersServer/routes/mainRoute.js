@@ -1,8 +1,13 @@
 const express = require('express')
 const router = express.Router()
 
-router.get('/', (req, res) => {
-    res.send('Hello World!')
-})
+const {
+    test,
+    downloadData
+} = require('../controllers/mainController')
+
+router.get('/', test)
+router.post('/sendData', downloadData)
+
 
 module.exports = router
