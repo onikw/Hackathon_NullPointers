@@ -17,6 +17,8 @@ interface FormContextType {
   additional: boolean;
   setAdditional: React.Dispatch<React.SetStateAction<boolean>>;
   handleInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  result: any;
+  setResult: any;
 }
 
 const FormContext = createContext<FormContextType | undefined>(undefined);
@@ -32,6 +34,7 @@ export const FormProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     usageAmount: ""
   });
   const [additional, setAdditional] = useState<boolean>(false);
+  const [result, setResult] = useState({})
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -42,7 +45,7 @@ export const FormProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   };
 
   return (
-    <FormContext.Provider value={{ input, setInput, additional, setAdditional, handleInput }}>
+    <FormContext.Provider value={{ input, setInput, additional, setAdditional, handleInput, result, setResult }}>
       {children}
     </FormContext.Provider>
   );

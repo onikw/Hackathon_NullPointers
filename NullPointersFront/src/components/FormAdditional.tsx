@@ -5,6 +5,7 @@ import { useFormContext } from "../contexts/FormContext.tsx";
 
 export default function FormAdditional() {
   const { input, additional, setAdditional } = useFormContext();
+  const {setResult, result} = useFormContext();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -13,7 +14,13 @@ export default function FormAdditional() {
       if (response.status === 200) {
         alert('Dane zostały zapisane pomyślnie');
         const data = response.data;
-        console.log(data.data)
+        console.log(data)
+
+        setResult((prev) =>{
+          console.log('dasda')
+          console.log(data.data)
+          return {data: data.data}
+        })
       }
     } catch (error) {
       alert('Błąd podczas zapisywania danych');

@@ -3,6 +3,7 @@ import ResultComponent from "./components/ResultComponent.tsx";
 import HeaderComponent from "./components/HeaderComponent.tsx";
 import {FormProvider} from "./contexts/FormContext.tsx";
 import ImageComponent from "./components/ImageComponent.tsx";
+import Hourses from "./components/Hourses.tsx";
 
 function App() {
   return (
@@ -22,8 +23,8 @@ function App() {
                 <section className={"p-4 bg-gray-800 border border-gray-600 rounded-lg h-fit m-5"}>
                   <ResultComponent/>
                 </section>
-                <section className={"border"}>
-                  Godziny optymalnego ładowania banku energii
+                <section className={""}>
+                  <Hourses />
                 </section>
               </div>
             </div>
