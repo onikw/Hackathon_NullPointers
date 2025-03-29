@@ -3,7 +3,7 @@ import InputComponent from "./InputComponent";
 export default function ElectricCarsInput() {
 
     return (
-        <div className="flex flex-row gap-6 p-4 border border-gray-600 rounded-lg bg-gray-800">
+        <div className="flex flex-row gap-6 p-4 border border-gray-600 rounded-lg bg-gray-600">
             <div className="flex-1">
                 <InputComponent
                     disabled={false}
