@@ -12,6 +12,8 @@ export default function FormAdditional() {
       const response = await axios.post("http://localhost:5555/sendData", input);
       if (response.status === 200) {
         alert('Dane zostały zapisane pomyślnie');
+        const data = response.data;
+        console.log(data.data)
       }
     } catch (error) {
       alert('Błąd podczas zapisywania danych');

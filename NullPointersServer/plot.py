@@ -147,4 +147,4 @@ def create_analysis_chart(energy_needed, max_power, solar_panel_power):
     return fig
 
 
-print(create_analysis_chart(200, 50, 10))
+# print(create_analysis_chart(200, 50, 10))
