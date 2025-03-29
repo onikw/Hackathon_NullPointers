@@ -111,7 +111,3 @@ def create_analysis_chart(energy_needed, max_power, solar_panel_power):
     plt.tight_layout()
     plt.savefig('analiza_energii.png', dpi=300, bbox_inches='tight')
     return fig
-
-if __name__ == "__main__":
-    fig = create_analysis_chart(energy_needed=200, max_power=30, solar_panel_power=10)
-    plt.show()
