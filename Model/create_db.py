@@ -36,7 +36,7 @@ def get_values_for_day(month, day_of_week):
 
 if __name__ == "__main__":
     # Ścieżka do katalogu z plikami JSON
-    json_dir_path = "./final"
+    json_dir_path = "./data_preprocessed/final"
 
     conn = sqlite3.connect("averages_data.db")
     cursor = conn.cursor()
