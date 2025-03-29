@@ -1,5 +1,6 @@
 import sys
 import os
+import json
 from plot import create_analysis_chart 
 
 sys.path.append(os.path.abspath(".."))  # Dodaje folder nadrzędny do ścieżki
@@ -7,19 +8,26 @@ sys.path.append(os.path.abspath(".."))  # Dodaje folder nadrzędny do ścieżki
 
 from Model.for_api.api import api
 
-args = sys.argv[1:]
-args = args[0]
+args = sys.argv[1:][0]
+
+parsed_args = json.loads(args)
+
+parsed_args = {k: int(v) for k, v in parsed_args.items()}
+
+args = parsed_args
+
+
 print(args)
 print(type(args))
-AVERAGE_CAR_BATTERY_CAPACITY = int(args["usageAmount"])  # w kWh
+AVERAGE_CAR_BATTERY_CAPACITY = args["usageAmount"]  # w kWh
 
 
-more_cars = int(args["carAmount"]) ## OPTIONAL
-battery_capacity = int(args["batteryCapacity"])  # w kWh
-battery_percentage = int(args["batteryPercentage"]) # w %
-average_office_daily_consumption = int(args["monthlyUsage"])//30  # w kWh
-charger_power = int(args["sourcePower"])  # w kW
-solar_power = int(args["solorPower"])  # w kW
+more_cars = args["carAmount"] ## OPTIONAL
+battery_capacity = args["batteryCapacity"]  # w kWh
+battery_percentage = args["batteryPercentage"] # w %
+average_office_daily_consumption = args["monthlyUsage"]//30  # w kWh
+charger_power = args["sourcePower"]  # w kW
+solar_power = args["solorPower"]  # w kW
 remaining_energy = (battery_capacity * battery_percentage)
 required_energy = average_office_daily_consumption + AVERAGE_CAR_BATTERY_CAPACITY * more_cars - remaining_energy
 if required_energy > 0:
