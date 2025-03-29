@@ -37,8 +37,12 @@ export default function FormAdditional() {
       </div>
 
       <form className="max-w-sm mx-auto" onSubmit={handleSubmit}>
-        <InputComponent disabled={false} name="sourcePower" title="Pojemność magazynu energii" />
-        <InputComponent disabled={false} name="energyUsage" title="Średnie zużycie energii" />
+        <InputComponent disabled={false} name="batteryCapacity" title="Pojemność magazynu energii" />
+        <InputComponent disabled={false} title={"Procent naładowania energii"} name={"batteryPercentage"} />
+        <InputComponent disabled={false} title={"Miesięczne zużycie energi"} name={"monthlyUsage"} />
+        <InputComponent disabled={false} title={"Moc źródła energii"} name={"sourcePower"} />
+
+        {/* Checkbox z dodatkowymi opcjami */}
 
         <div className="my-5 flex items-center">
           <input
@@ -49,10 +53,12 @@ export default function FormAdditional() {
             className="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500"
             onChange={() => setAdditional(prev => !prev)}
           />
-          <label htmlFor="additional" className="ml-2 text-sm font-medium">Dodatkowe opcje</label>
+          <label htmlFor="additional" className="ml-2 text-sm font-medium">Ogniwa fotowoltaiczne</label>
         </div>
 
-        <InputComponent disabled={!additional} name="usageAmount" title="Zużycie baterii" />
+        {additional && (
+          <InputComponent disabled={false} title={"Moc źródła energii słonecznej"} name={"solarPower"} />
+        )}
 
         <button
           className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full mt-4"
