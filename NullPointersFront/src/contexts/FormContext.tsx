@@ -2,10 +2,13 @@
 import React, { createContext, useState, ReactNode, useContext } from "react";
 
 export interface FormInput {
-  carAmount?: string;
-  usageAmount?: string;
+  batteryCapacity: string;
+  batteryPercentage: string;
+  carAmount: string;
+  monthlyUsage: string;
   sourcePower: string;
-  energyUsage?: string;
+  solarPower?: string;
+  usageAmount: string;
 }
 
 interface FormContextType {
@@ -20,10 +23,13 @@ const FormContext = createContext<FormContextType | undefined>(undefined);
 
 export const FormProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [input, setInput] = useState<FormInput>({
+    batteryCapacity: "",
+    batteryPercentage: "",
     carAmount: "",
-    usageAmount: "",
+    monthlyUsage: "",
     sourcePower: "",
-    energyUsage: ""
+    solarPower: "",
+    usageAmount: ""
   });
   const [additional, setAdditional] = useState<boolean>(false);
 
