@@ -44,15 +44,15 @@ def create_analysis_chart(energy_needed, max_power, solar_panel_power):
     ax1.step(
         hours,
         display_prices,
-        color="#1f77b4",
+        color="#00ABFF",
         linewidth=2.5,
         where="post",
     )
 
     ax1.set_facecolor('#e6e6e6')  # Slightly darker gray for just the plot area
     ax1.set_xlabel("Godzina dnia", fontsize=12, fontweight="bold")
-    ax1.set_ylabel("Cena (PLN/kWh)", fontsize=12, fontweight="bold", color="#1f77b4")
-    ax1.tick_params("y", colors="#1f77b4")
+    ax1.set_ylabel("Cena (PLN/kWh)", fontsize=12, fontweight="bold", color="#00ABFF")
+    ax1.tick_params("y", colors="Black")
     ax1.set_xlim(0, 23)
     ax1.set_xticks(range(0, 24, 1))
 
@@ -68,7 +68,7 @@ def create_analysis_chart(energy_needed, max_power, solar_panel_power):
     )
     ax2.fill_between(hours, solar_production, alpha=0.2, color="#FDC200")
     ax2.set_ylabel("Moc (kW)", fontsize=12, fontweight="bold", color="#FDC200")
-    ax2.tick_params("y", colors="#FDC200")
+    ax2.tick_params("y", colors="Black")
 
     start_hour = start[0] + start[1] / 60
     end_hour = end[0] + end[1] / 60
