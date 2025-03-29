@@ -38,7 +38,8 @@ def create_analysis_chart(energy_needed, max_power, solar_panel_power):
 
     display_prices = [0.7 - price / 10000 for price in price_data]
 
-    fig, ax1 = plt.subplots(figsize=(14, 8), dpi=100)
+    # For a light blue background
+    fig, ax1 = plt.subplots(figsize=(14, 8), dpi=100, facecolor='#6a7282')
 
     ax1.step(
         hours,
@@ -48,6 +49,7 @@ def create_analysis_chart(energy_needed, max_power, solar_panel_power):
         where="post",
     )
 
+    ax1.set_facecolor('#e6e6e6')  # Slightly darker gray for just the plot area
     ax1.set_xlabel("Godzina dnia", fontsize=12, fontweight="bold")
     ax1.set_ylabel("Cena (PLN/kWh)", fontsize=12, fontweight="bold", color="#1f77b4")
     ax1.tick_params("y", colors="#1f77b4")
