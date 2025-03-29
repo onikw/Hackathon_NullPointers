@@ -31,7 +31,8 @@ def calculate_hours_from_day_time(data, energy, max_power):
                 return ((start_idx-1, 60-remaining_minutes), (end_idx+1, 0))
         else:
             return ((start_idx, 0), (end_idx+1, 0))
-
+    else:
+        return ((0, 0), (0, 0))
 #calculate_hours_from_day_time(data, energy, max_power)
 # data: list[int], energy: int kWh, max_power: int kW
 #return ((start_hour, start_minute), (end_hour, end_minute))
