@@ -1,41 +1,36 @@
-import requests
-import datetime
 import numpy as np
 from scipy.stats import norm
+import requests
+import datetime
 
-# Współrzędne geograficzne Brzegu
-def get_sunshine_duration():
+def get_sunshine_data():
     latitude = 50.8600
     longitude = 17.4670
-
+    
     # Data na jutro
     tomorrow = (datetime.date.today() + datetime.timedelta(days=1)).isoformat()
-
-    # URL API Open-Meteo
-    url = f"https://api.open-meteo.com/v1/forecast?latitude={latitude}&longitude={longitude}&daily=sunshine_duration&timezone=Europe%2FWarsaw&start_date={tomorrow}&end_date={tomorrow}"
-
+    
+    # URL API Open-Meteo z godzinowym nasłonecznieniem
+    url = f"https://api.open-meteo.com/v1/forecast?latitude={latitude}&longitude={longitude}&hourly=shortwave_radiation&timezone=Europe%2FWarsaw&start_date={tomorrow}&end_date={tomorrow}"
+    
     response = requests.get(url)
     data = response.json()
+    
+    # Pobranie listy godzin i wartości nasłonecznienia
+    hours = data['hourly']['time']
+    radiation = data['hourly']['shortwave_radiation']  # W W/m²
+    
+    return hours, radiation
 
-    # Pobranie liczby godzin nasłonecznienia
-    sunshine_duration_seconds = data['daily']['sunshine_duration'][0]
-    sunshine_duration_hours = sunshine_duration_seconds / 3600
+def energy_from_sunshine(solar_panel_power, panel_efficiency):
+    hours, radiation = get_sunshine_data()
+    
+    # Przekształcenie mocy promieniowania na energię
+    energy_produced = 0
+    for rad in radiation:
+        power_output = solar_panel_power * panel_efficiency * (rad / 1000)  # Przeliczenie W/m² na kW/m²
+        energy_produced += power_output / 2  # Średnia moc w ciągu każdej 30-minutowej próbki
+    
+    return energy_produced
 
-    return sunshine_duration_hours
-
-
-def energy_from_sunshine(solar_panel_power, sunshine_duration_hours):
-    mu = 12
-    sigma = 3
-
-    hours = np.linspace(6, 18, 100)
-
-    solar_power = norm.pdf(hours, mu, sigma)
-    solar_power = solar_power / max(solar_power)
-
-    solar_energy_factor = np.trapezoid(solar_power, hours)
-
-    return solar_panel_power * sunshine_duration_hours * solar_energy_factor
-
-
-print(energy_from_sunshine(5, get_sunshine_duration()))
+print(energy_from_sunshine(5, 0.8))
