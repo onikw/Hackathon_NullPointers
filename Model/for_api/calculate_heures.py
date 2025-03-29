@@ -1,13 +1,3 @@
-import sys
-from pathlib import Path
-
-# Add the parent directory of the current file to the system path
-current_file = Path(__file__).resolve()
-parent_directory = current_file.parent.parent
-sys.path.append(str(parent_directory))
-
-from create_db import get_values_for_day
-
 def most_expensive_segment(array, length):
     n = len(array)
     array = array + array[:length-1]  # Extend the array to simulate circular behavior
