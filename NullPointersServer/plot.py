@@ -45,7 +45,6 @@ def create_analysis_chart(energy_needed, max_power, solar_panel_power):
         display_prices,
         color="#1f77b4",
         linewidth=2.5,
-        label="Cena energii",
         where="post",
     )
 
@@ -64,7 +63,6 @@ def create_analysis_chart(energy_needed, max_power, solar_panel_power):
         solar_production,
         color="#FDC200",
         linewidth=2.5,
-        label="Produkcja energii z PV",
     )
     ax2.fill_between(hours, solar_production, alpha=0.2, color="#FDC200")
     ax2.set_ylabel("Moc (kW)", fontsize=12, fontweight="bold", color="#FDC200")
@@ -91,7 +89,6 @@ def create_analysis_chart(energy_needed, max_power, solar_panel_power):
         max_price + 0.05 * price_range,
         color="#18C902",
         alpha=0.2,
-        label="Okres ładowania",
     )
 
     lines1, labels1 = ax1.get_legend_handles_labels()
@@ -128,7 +125,7 @@ def create_analysis_chart(energy_needed, max_power, solar_panel_power):
 
     summary = (
         f"Okno ładowania: {start[0]:02d}:{start[1]:02d} do {end[0]:02d}:{end[1]:02d}\n"
-        f"Czas trwania: {charging_duration:.2f} godz.\n"
+        f"Czas ładowania: {charging_duration:.2f} godz.\n"
         f"Średnia cena podczas ładowania: {avg_price_during_charging:.4f} PLN/kWh\n"
         f"Oszczędności: {savings_percent:.1f}%"
     )
