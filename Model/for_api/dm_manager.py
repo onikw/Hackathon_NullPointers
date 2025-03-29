@@ -36,7 +36,7 @@ def get_values_for_day(month, day_of_week):
 
 if __name__ == "__main__":
     # Ścieżka do katalogu z plikami JSON
-    json_dir_path = "./data_preprocessed/final"
+    json_dir_path = "../data_preprocessed/final"
 
     conn = sqlite3.connect("averages_data.db")
     cursor = conn.cursor()
@@ -77,13 +77,3 @@ if __name__ == "__main__":
     # Zatwierdzenie zmian
     conn.commit()
     conn.close()
-
-    # Przykład użycia
-    example_month = 1  # Przykładowy miesiąc jako int
-    example_day_of_week = 0  # Przykładowy dzień tygodnia jako int
-    results = get_values_for_day(example_month, example_day_of_week)
-
-    # Wyświetlenie wyników
-    print(f"Wyniki dla miesiąca '{example_month}' i dnia '{example_day_of_week}':")
-    for hour, value in results:
-        print(f"Godzina {hour}: {value}")
