@@ -1,39 +1,23 @@
-import {useState} from "react";
-import * as React from "react";
+import React from "react";
 import axios from "axios";
 import InputComponent from "./InputComponent.tsx";
-
-interface FormInput {
-  carAmount?: string;
-  usageAmount?: string;
-  sourcePower: string
-}
+import { useFormContext } from "../contexts/FormContext.tsx";
 
 export default function FormAdditional() {
-  const [input, setInput] = useState<FormInput>({carAmount: "", usageAmount: "", sourcePower: ""})
-  const [additional, setAdditional] = useState<boolean>(false)
-
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(prevState => {
-      const {name, value} = e.target
-      return {
-        ...prevState,
-        [name]: value
-      }
-    })
-  }
+  const { input, additional, setAdditional } = useFormContext();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5555/sendData", input)
+      const response = await axios.post("http://localhost:5555/sendData", input);
       if (response.status === 200) {
-        alert('Dane zostały zapisane pomyślnie')
+        alert('Dane zostały zapisane pomyślnie');
       }
     } catch (error) {
-      alert('Błąd podczas zapisywania danych')
+      alert('Błąd podczas zapisywania danych');
     }
-  }
+  };
+
   return (
     <div className="battery-container border-4 border-gray-300 rounded-lg pt-2 pb-8 px-4 bg-gray-700 relative">
       {/* Górna część baterii (kapsel) */}
@@ -53,22 +37,22 @@ export default function FormAdditional() {
       </div>
 
       <form className="max-w-sm mx-auto" onSubmit={handleSubmit}>
-        <InputComponent input={input} handleInput={handleInput} disabled={false} name={"sourcePower"}
-                      title={"Moc baterii"}/>
+        <InputComponent disabled={false} name="sourcePower" title="Pojemność magazynu energii" />
+        <InputComponent disabled={false} name="energyUsage" title="Średnie zużycie energii" />
 
         <div className="my-5 flex items-center">
-          <input type="checkbox" id="additional" name="additional" checked={additional}
-                className="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500"
-                onChange={() => setAdditional(prevState => !prevState)}
+          <input
+            type="checkbox"
+            id="additional"
+            name="additional"
+            checked={additional}
+            className="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500"
+            onChange={() => setAdditional(prev => !prev)}
           />
           <label htmlFor="additional" className="ml-2 text-sm font-medium">Dodatkowe opcje</label>
         </div>
 
-        <InputComponent input={input} handleInput={handleInput} disabled={!additional} title={"Ilość samochodów"}
-                      name={"carAmount"}/>
-
-        <InputComponent input={input} handleInput={handleInput} disabled={!additional} title={"Zużycie baterii"}
-                      name={"usageAmount"}/>
+        <InputComponent disabled={!additional} name="usageAmount" title="Zużycie baterii" />
 
         <button
           className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full mt-4"
@@ -76,5 +60,5 @@ export default function FormAdditional() {
         </button>
       </form>
     </div>
-  )
+  );
 }
