@@ -20,7 +20,7 @@ def get_values_for_day(month, day_of_week):
         - The table name is dynamically constructed as 'averages_month_<month>'.
         - The database connection is closed after the query is executed.
     """
-    conn = sqlite3.connect("averages_data.db")
+    conn = sqlite3.connect("../Model/for_api/averages_data.db")
     cursor = conn.cursor()
 
     table_name = f"averages_month_{month}"  # Dynamiczna nazwa tabeli
@@ -45,7 +45,7 @@ if __name__ == "__main__":
     for filename in os.listdir(json_dir_path):
         if filename.endswith(".json"):
             json_file_path = os.path.join(json_dir_path, filename)
-            
+
             # Wyciągnięcie miesiąca z nazwy pliku
             base_name = os.path.basename(json_file_path).replace(".json", "")  # Usunięcie rozszerzenia
             month = int(base_name.split("_")[3])  # Wyciągnięcie numeru miesiąca
