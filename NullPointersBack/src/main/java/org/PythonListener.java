@@ -12,12 +12,13 @@ public class PythonListener implements Runnable {
     private BufferedReader reader;
     private PrintWriter writer;
     private boolean isConnected;
+    private Interval interval;
 
-    public PythonListener(Socket socket) throws IOException {
+    public PythonListener(Socket socket, Interval interval) throws IOException {
         this.reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         this.writer = new PrintWriter(socket.getOutputStream(), true);
         this.isConnected = true;  // Początkowo połączenie jest aktywne
-
+        this.interval = interval;
         System.out.println("Połączono z serwerem Python!");
     }
 
@@ -30,6 +31,10 @@ public class PythonListener implements Runnable {
                 String response = reader.readLine();
                 if (response != null) {
                     System.out.println("Python: " + response);  // Wyświetl odpowiedź Pythona
+                    interval.parseInterval(response);
+                    interval.printInterval();
+
+
                 }
 
             } catch (IOException e) {
