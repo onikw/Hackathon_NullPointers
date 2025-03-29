@@ -22,13 +22,13 @@ def get_sunshine_data():
     
     return hours, radiation
 
-def energy_from_sunshine(solar_panel_power, panel_efficiency):
+def energy_from_sunshine(solar_panel_power):
     hours, radiation = get_sunshine_data()
     
     # Przekształcenie mocy promieniowania na energię
     energy_produced = 0
     for rad in radiation:
-        power_output = solar_panel_power * panel_efficiency * (rad / 1000)  # Przeliczenie W/m² na kW/m²
+        power_output = solar_panel_power * (rad / 1000)  # Przeliczenie W/m² na kW/m²
         energy_produced += power_output / 2  # Średnia moc w ciągu każdej 30-minutowej próbki
     
     return energy_produced

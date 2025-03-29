@@ -9,7 +9,7 @@ def api(energy:int, power:int, power_solar:int) -> tuple:
     current_weekday = (datetime.now().weekday() + 1) % 7  # Weekday from 0 (Monday) to 6 (Sunday)
     
     data = get_values_for_day(current_month, current_weekday)
-    energy -= energy_from_sunshine(power_solar, 0.8)
+    energy -= energy_from_sunshine(power_solar)
 
     return calculate_hours_from_day_time(data, energy, power)
 
