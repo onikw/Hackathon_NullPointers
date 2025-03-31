@@ -1,8 +1,8 @@
-# SWM_NullPointers
+# Hackathon_NullPointers
 
 ## Energy Storage Optimization System
 
-SWM_NullPointers is an intelligent energy management application that optimizes battery storage charging based on weather forecasts, renewable energy production estimates, and energy price predictions. The system helps users maximize the use of renewable energy while minimizing electricity costs.
+Hackathon_NullPointers is an intelligent energy management application that optimizes battery storage charging based on weather forecasts, renewable energy production estimates, and energy price predictions. The system helps users maximize the use of renewable energy while minimizing electricity costs.
 
 ## Features
 
@@ -15,7 +15,7 @@ SWM_NullPointers is an intelligent energy management application that optimizes 
 ## Project Structure
 
 ```
-SWM_NullPointers/
+Hackathon_NullPointers/
 ├── Model/                  # ML models and data preprocessing
 │   └── data_preprocessed/  # Scripts for data preparation and analysis
 ├── NullPointersFront/      # React+TypeScript frontend application
