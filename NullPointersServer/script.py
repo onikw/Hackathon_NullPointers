@@ -25,8 +25,8 @@ battery_percentage = args["batteryPercentage"]/100 # w %
 average_office_daily_consumption = args["monthlyUsage"]//30  # w kWh
 charger_power = args["sourcePower"]  # w kW
 solar_power = args["solarPower"]  # w kW
-remaining_energy = (battery_capacity * battery_percentage)
-required_energy = average_office_daily_consumption + AVERAGE_CAR_BATTERY_CAPACITY * more_cars - remaining_energy
+remaining_energy = (battery_capacity * (1-battery_percentage))
+required_energy = average_office_daily_consumption + AVERAGE_CAR_BATTERY_CAPACITY * more_cars + remaining_energy
 if required_energy > 0:
 #     print(f"Brakuje energii: {required_energy} kWh")
     pass
