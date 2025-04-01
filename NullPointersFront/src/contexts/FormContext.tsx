@@ -18,7 +18,7 @@ interface FormContextType {
   setAdditional: React.Dispatch<React.SetStateAction<boolean>>;
   handleInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
   result: any;
-  setResult: any;
+  setResult: React.Dispatch<React.SetStateAction<any>>;
 }
 
 const FormContext = createContext<FormContextType | undefined>(undefined);

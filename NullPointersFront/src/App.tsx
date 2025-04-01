@@ -9,7 +9,7 @@ function App() {
   return (
     <FormProvider>
       <>
-        <div className="min-h-screen bg-gray-500 flex flex-col mx-6 text-white">
+        <div className="min-h-screen bg-gray-500 flex flex-col text-white">
           <HeaderComponent/>
           <div id="container" className="flex flex-grow flex-col">
             <div className={"flex-grow"}></div>

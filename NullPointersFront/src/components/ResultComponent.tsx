@@ -12,10 +12,11 @@ export default function ElectricCarsInput() {
                 disabled={false}
                 title="Liczba aut elektrycznych"
                 name="carAmount"
+                units={"szt."}
               />
               <InputComponent
                 disabled={false}
-                title="Średnia pojemność ogniw (kWh)"
+                title="Średnia pojemność ogniw"
                 name="usageAmount"
               />
           </div>

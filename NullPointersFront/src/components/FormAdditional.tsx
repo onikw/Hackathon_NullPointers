@@ -5,7 +5,7 @@ import { useFormContext } from "../contexts/FormContext.tsx";
 
 export default function FormAdditional() {
   const { input, additional, setAdditional } = useFormContext();
-  const {setResult, result} = useFormContext();
+  const {setResult} = useFormContext();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -16,9 +16,7 @@ export default function FormAdditional() {
         const data = response.data;
         console.log(data)
 
-        setResult((prev) =>{
-          console.log('dasda')
-          console.log(data.data)
+        setResult(() =>{
           return {data: data.data}
         })
       }
@@ -47,9 +45,9 @@ export default function FormAdditional() {
 
       <form className="max-w-sm mx-auto" onSubmit={handleSubmit}>
         <InputComponent disabled={false} name="batteryCapacity" title="Pojemność magazynu energii" />
-        <InputComponent disabled={false} title={"Procent naładowania energii"} name={"batteryPercentage"} />
+        <InputComponent disabled={false} title={"Procent naładowania energii"} name={"batteryPercentage"} units={"%"} />
         <InputComponent disabled={false} title={"Miesięczne zużycie energi"} name={"monthlyUsage"} />
-        <InputComponent disabled={false} title={"Moc źródła energii"} name={"sourcePower"} />
+        <InputComponent disabled={false} title={"Moc źródła energii"} name={"sourcePower"} units={"kW"} />
 
         {/* Checkbox z dodatkowymi opcjami */}
 
@@ -66,7 +64,7 @@ export default function FormAdditional() {
         </div>
 
         {additional && (
-          <InputComponent disabled={false} title={"Moc źródła energii słonecznej"} name={"solarPower"} />
+          <InputComponent disabled={false} title={"Moc źródła energii słonecznej"} name={"solarPower"} units={"kW"} />
         )}
 
         <button

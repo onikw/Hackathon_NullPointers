@@ -43,13 +43,13 @@ const processData = () => {
           return `${formatTime(startHour, startMinute)} - ${formatTime(endHour, endMinute)}`;
         });
       } else if (result.data.includes(',')) {
-        hours = result.data.split(',').map(h => h.trim());
+        hours = result.data.split(',').map((h:any) => h.trim());
       } else {
         hours = [result.data];
       }
     } else if (Array.isArray(result.data)) {
       // Obsługa danych jako tablica
-      hours = result.data.map(item => {
+      hours = result.data.map((item : any ) => {
         if (typeof item === 'string' && item.includes('((') && item.includes('))')) {
           // Próba parsowania formatu ((H,m),(H,m)) w tablicy
           const regex = /\(\((\d+),\s*(\d+)\),\s*\((\d+),\s*(\d+)\)\)/;
@@ -184,20 +184,6 @@ const processData = () => {
       <div className="bg-gray-800 mt-4 p-3 rounded-lg border border-gray-600">
         <div className="text-sm text-gray-300 mb-2">
           <span className="text-green-400 font-semibold">Informacja:</span> Optymalne godziny ładowania banku energii
-        </div>
-        <div className="flex justify-between text-xs text-gray-400">
-          <div className="flex items-center">
-            <div className="w-3 h-3 bg-green-500 mr-1 rounded-sm"></div>
-            <span>Niskie ceny</span>
-          </div>
-          <div className="flex items-center">
-            <div className="w-3 h-3 bg-blue-500 mr-1 rounded-sm"></div>
-            <span>Energia odnawialna</span>
-          </div>
-          <div className="flex items-center">
-            <div className="w-3 h-3 bg-yellow-500 mr-1 rounded-sm"></div>
-            <span>Niskie obciążenie</span>
-          </div>
         </div>
       </div>
     </div>
