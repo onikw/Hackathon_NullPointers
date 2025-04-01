@@ -4,6 +4,13 @@
 
 Hackathon_NullPointers is an intelligent energy management application that optimizes battery storage charging based on weather forecasts, renewable energy production estimates, and energy price predictions. The system helps users maximize the use of renewable energy while minimizing electricity costs.
 
+## Preview
+![image](https://github.com/user-attachments/assets/46b1dd66-6608-49b1-ae20-c6d713a95170)
+![image](https://github.com/user-attachments/assets/ef857925-2f04-481f-a00c-7e189e5a9a4b)
+
+
+
+
 ## Features
 
 - **Smart Battery Charging Scheduler**: Determines optimal charging windows based on multiple factors
